@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Product</title>
+  <style>
+    h1 {
+            font-size: 50px;
+            color: #333;
+            display: inline-block;
+            margin-right: 500px;
+            margin-left: 800px;
+            margin-bottom: 30px;
+        }
+     .manager-page
+        {
+            display : flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .but {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 8px 16px;
+            background-color: #d6dbdf;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+           }
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    input[type=text], input[type=number], select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+    input[type=submit] {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 10px 20px;
+    }
+    input[type=submit]:hover {
+      background-color: #3e8e41;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      margin: 50px auto 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color:#333;
+      font-weight: bold;
+      color: white;
+    }
+    img {
+
+width: 300px;
+display:block;
+margin-top:100px;
+margin-left:-2000px;
+margin-bottom: 30px;
+border: 1px solid black; 
+box-shadow: 2px 2px 5px grey; /* add a grey shadow */
+
+}
+.but {
+  background-color: #4CAF50;
+
+  color: #eee;
+   font-weight:15px ;
+   font-size: 20px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  </style>
+</head>
+</style>
+<body>
+   <div class = "manager-page">
+     <h1>Add Product</h1>
+     <img src="https://tse3.mm.bing.net/th?id=OIP.7IOleuDmN7oGLAxRNERYOwHaHo&pid=Api&P=0" alt="shopping cart">
+      <a href="{{ url_for('logout') }}"><button class = "but">Log Out</button></a>
+    </div>
+  <form method="POST" action="{{ url_for('add_product') }}">
+    <label for="name">Item Name:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="id">Item ID:</label>
+    <input type="number" name="id" required><br>
+
+    <label for="type">Type:</label>
+    <select name="type" required>
+      <option value="packaged">Packaged</option>
+      <option value="loose">Loose</option>
+    </select><br>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" required><br>
+    
+
+    <label for="price">Price(per unit):</label>
+    <input type="number" name="price" step="0.01" required><br>
+    
+    <label for="purchaseprice">Purchase_Price(per unit):</label>
+    <input type="number" name="purchaseprice" step="0.01" required><br>
+
+    <input type="submit" value="Add Product">
+  </form>
+
+  <br>
+
+  <table>
+    <tr>
+      <th>Item ID </th>
+      <th>Item Name </th>
+      <th>Type </th>
+      <th>Price(per unit) </th>
+      <th>Purchase Price(per unit) </th>
+      <th>Quantity(in kgs if loose) </th>
+    </tr>
+    {% for item in items %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.purchase_price }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
+
