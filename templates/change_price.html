@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Change Price</title>
+  </head>
+  <style>
+    h1 {
+    font-size: 50px;
+    background-color: #fff; 
+  color: #202c2d;
+  text-shadow: 
+    1px 0px 1px #ccc, 0px 1px 1px #eee, 
+    2px 1px 1px #ccc, 1px 2px 1px #eee,
+    3px 2px 1px #ccc, 2px 3px 1px #eee,
+    4px 3px 1px #ccc, 3px 4px 1px #eee,
+    5px 4px 1px #ccc, 4px 5px 1px #eee,
+    6px 5px 1px #ccc, 5px 6px 1px #eee,
+    7px 6px 1px #ccc;
+      
+    
+    }
+  form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+label {
+  text-align: center;
+  display: inline-block;
+  width: 150px;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+input[type="text"], input[type="submit"] {
+  padding: 8px;
+  font-size: 20px;
+  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+ 
+        img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 20px auto;
+        }
+
+  </style>
+  <body>
+     <div class = "salesclerk-page">
+     <h1>Update Price</h1>
+    </div>
+     <img src="https://img.freepik.com/free-vector/indian-rupee-money-bag_23-2147998532.jpg" alt="Indian Rupee Money Bag">
+    <form action="{{ url_for('change_price') }}" method="POST">
+      <label for="item_name">Item Name:</label>
+      <input type="text" id="item_name" name="item_name"><br><br>
+      <label for="item_id">Item ID:</label>
+      <input type="text" id="item_id" name="item_id"><br><br>
+      <label for="new_price">New Price:</label>
+      <input type="text" id="new_price" name="new_price"><br><br>
+      <input type="submit" value="Update Price">
+    </form>
+  </body>
+</html>
+
