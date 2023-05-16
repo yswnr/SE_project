@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sales Clerk</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+        h1 {
+            font-size: 45px;
+            color: #333;
+            display: inline-block;
+            margin-right: 500px;
+            margin-left: 700px;
+        }
+        .manager-page:
+        {
+            display : flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+       .but {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 8px 16px;
+            background-color: #d6dbdf;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 22px;
+           }
+
+      table {
+        border-collapse: collapse;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 800px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #dddddd;
+        font-size: 22px;
+      }
+
+      th {
+        background-color: #f1f1f1;
+        
+        font-size: 25px;
+      }
+
+      input[type="number"] {
+        width: 50px;
+        padding: 5px;
+        margin-right: 5px;
+      }
+
+      button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        font-size:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class = "manager-page">
+     <h1>New Transaction</h1>
+     <a href="{{ url_for('logout') }}"><button class = "but">Log Out</button></a>
+    </div>
+    <form method="POST">
+      <table  style="width: 100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Select Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.type }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>
+                <input type="number" name="item_quantity" min="0" max="{{ item.quantity }}" value="0">
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button type="submit">Checkout</button>
+    </form>
+  </body>
+</html>
+
