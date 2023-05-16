@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sales Statistics</title>
+  <style>
+    /* Add some basic styles for the page layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      background-color: #fff;
+    }
+    h1 {
+      color: #444;
+      margin: 0;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2em;
+      border-bottom: 1px solid #eee;
+    }
+    form {
+      margin: 40px 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 4px;
+    }
+    label {
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    input[type="text"], input[type="date"], input[type="submit"] {
+      display: block;
+      margin-bottom: 20px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+      background-color: #eee;
+      font-size: 1.1em;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    h2 {
+      margin: 40px 0 20px;
+      text-align: center;
+      font-size: 1.5em;
+      color: #444;
+    }
+    p {
+      margin: 10px 0;
+      text-align: center;
+      font-size: 1.4em;
+      color: #666;
+    }
+    img {
+            width: 100%;
+            max-width: 500px;
+            display: block;
+            margin: 20px auto;
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sales Statistics</h1>
+    <img src="https://icons-for-free.com/iconfiles/png/512/chart+graph+marketing+report+sales+statistics+icon-1320086520781030923.png" alt="Example Image">
+
+    <form action="{{ url_for('view_sales_statistics') }}" method="POST">
+    
+      <label for="item-name">Item Name:</label>
+      <input type="text" id="item-name" name="item_name">
+      <label for="start-time">Start Time:</label>
+      <input type="date" id="start-date" name="start_date">
+      <input type="text" id="start-time" name="start_time" placeholder="hh:mm AM/PM">
+      <label for="end-time">End Time:</label>
+      <input type="date" id="end-date" name="end_date">
+      <input type="text" id="end-time" name="end_time" placeholder="hh:mm AM/PM">
+      <input type="submit" value="Submit">
+    </form>
+    {% if sales_stats %}
+      <h2>Sales Statistics for {{ item_name }} from {{ start_date }} {{ start_time }} to {{ end_date }} {{ end_time }}</h2>
+       <p>Item           :  {{ item_name }}</p>
+       <p>Quantity sold  :  {{ sales_stats.quantity }}</p>
+       <p>Total sales    :  {{ sales_stats.total_sales }}</p>
+       <p>Total profit   : {{ sales_stats.total_profit }}</p>
+  {% endif %}
+</body>
+</html>
+
