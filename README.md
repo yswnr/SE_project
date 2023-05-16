@@ -1,2 +1,3 @@
 # SE_project
-This repository consists of all the files used in making a Supermarket Automation Software.
+Building Supermarket Automation Software(SAS) using Flask ,AQLalchemy and python.
+
