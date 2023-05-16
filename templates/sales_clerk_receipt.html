@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sales Clerk Receipt</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		table {
+			border-collapse: collapse;
+			margin: 20px auto;
+			width: 80%;
+		}
+		th, td {
+			border: 1px solid #ccc;
+			padding: 10px;
+			text-align: left;
+			font-size: 20px;
+		}
+		th {
+			background-color: #f0f0f0;
+			font-size: 20px;
+		}
+		tbody tr:nth-child(even) {
+			background-color: #f0f0f0;
+		}
+		p {
+			text-align: center;
+			margin: 20px 0;
+			font-size: 22px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h1>Sales Clerk Receipt</h1>
+	<p>Transaction details:</p>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Total Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for transaction in transactions %}
+			{% if transaction.transaction_quantity > 0 %}
+			<tr>
+				<td>{{ transaction.item_id }}</td>
+				<td>{{ transaction.item.name }}</td>
+				<td>{{ transaction.item.price }}</td>
+				<td>{{ transaction.transaction_quantity }}</td>
+				<td>{{ transaction.transaction_price }}</td>
+			</tr>
+			{% endif %}
+			{% endfor %}
+		</tbody>
+	</table>
+	<p>Total cost: {{ total_cost }}</p>
+</body>
+</html>
