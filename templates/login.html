@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      
+      .login-container {
+       background-color: #fff;
+        width: 500px;
+        height: 400px;
+        margin: 0 auto;
+        margin-top: 40px;
+        padding: 50px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #bbb;
+      }
+      
+      h1 {
+        text-align: center;
+        font-size : 40px;
+        
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 30px;
+      }
+      
+      input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+      
+      input[type="text"], input[type="password"]
+      {
+         font-size:25px;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size : 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        transition: transform 0.3s ease;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+         transform: translateY(-5px);
+      }
+      
+      .error {
+        color: red;
+        margin-bottom: 10px;
+      }
+ 
+      .class
+      {   
+          text-align: center;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Login</h1>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="error">{{ messages[0] }}</div>
+        {% endif %}
+      {% endwith %}
+      <form action="{{ url_for('login') }}" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </body>
+   <p class ="class">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+</html>
+
